@@ -3,11 +3,10 @@ const { readdir } = require('node:fs/promises');
 const { createWriteStream, createReadStream } = require('fs');
 const bundle = path.join(__dirname, 'project-dist', 'bundle.css');
 const stylesDir = path.join(__dirname, 'styles');
+const writer = createWriteStream(bundle);
 
 readdir(stylesDir, { withFileTypes: true })
   .then((files) => {
-    const writer = createWriteStream(bundle);
-
     files.forEach((el) => {
       const file = path.join(el.path, el.name);
       const fileExt = path.parse(file).ext.slice(1);
