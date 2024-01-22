@@ -12,7 +12,8 @@ fs.readdir(dir, { withFileTypes: true })
 
         fs.stat(file)
           .then((stats) => {
-            console.log(`${fileName} - ${fileExt} - ${stats.size / 1000}kb`);
+            const fileSize = (stats.size / 1024).toFixed(2);
+            console.log(`${fileName} - ${fileExt} - ${fileSize}kb`);
           })
           .catch((err) => console.error(err));
       }
